@@ -9,4 +9,10 @@ router.get('/', async (req, res) => {
     });
 });
 
+router.get('/projects/:id', async (req, res) => {
+    const projectData = await Project.findByPk(req.params.id);
+    const projects = [ projectData.get({ plain: true }) ];
+    res.render('homepage', { projects });
+})  
+
 module.exports = router;
